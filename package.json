@@ -1,0 +1,25 @@
+{
+  "name": "back-end-api",
+  "version": "1.0.0",
+  "description": "O Abastapp é um aplicativo de ranqueamento de postos de gasolina por geolocalização, com base em dados computados e analisados pelos usuários será possível ranquear os postos de gasolina ao redor com o intuito de encontrar os melhores lugares para se abastecer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abastapp/back-end-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abastapp/back-end-api/issues"
+  },
+  "homepage": "https://github.com/Abastapp/back-end-api#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
