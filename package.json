@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/Abastapp/back-end-api#readme",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "express": "^4.17.3",
+    "mongoose": "^6.2.8",
     "nodemon": "^2.0.15"
   }
 }
