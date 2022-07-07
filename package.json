@@ -1,27 +1,81 @@
 {
-  "name": "back-end-api",
+  "name": "abastapp",
   "version": "1.0.0",
-  "description": "O Abastapp é um aplicativo de ranqueamento de postos de gasolina por geolocalização, com base em dados computados e analisados pelos usuários será possível ranquear os postos de gasolina ao redor com o intuito de encontrar os melhores lugares para se abastecer.",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Abastapp/back-end-api.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Abastapp/back-end-api/issues"
+  "license": "ISC",
+  "scripts": {
+    "infra": "node dev-infra.js",
+    "debug": "nodemon --inspect --watch 'src/**' --exec node -r ts-node/register -r dotenv/config -r tsconfig-paths/register dev-infra.ts -e ts",
+    "dev": "nodemon --watch 'src/**' --exec npx ts-node -r dotenv/config -r tsconfig-paths/register dev-infra.ts -e ts",
+    "build": "swc src -d build",
+    "lint": "prettier -w src tests && eslint --cache --fix --ext .ts src tests",
+    "test": "jest --runInBand --passWithNoTests --detectOpenHandles",
+    "test:integration": "npm test -- -c jest.integration.config.ts  --verbose ",
+    "test:unit": "npm test -- -c jest.unit.config.ts",
+    "test:cov": "jest --runInBand --coverage",
+    "test:watch": "npm test -- --watch",
+    "start": "node ./build/main/server.js",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepare": "husky install"
   },
-  "homepage": "https://github.com/Abastapp/back-end-api#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^7.2.0",
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.196",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^5.1.1",
+    "husky": "^7.0.4",
+    "jest": "^28.1.1",
+    "jest-mock-extended": "^2.0.6",
+    "lint-staged": "^13.0.1",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.3.2",
+    "serverless": "^3.19.0",
+    "serverless-dotenv-plugin": "^4.0.1",
+    "serverless-offline": "^8.8.0",
+    "testcontainers": "^7.18.2",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.0",
+    "tsconfig-paths": "^4.0.0",
+    "typescript": "^4.5.4"
+  },
   "dependencies": {
-    "body-parser": "^1.19.2",
-    "express": "^4.17.3",
-    "mongoose": "^6.2.8",
-    "nodemon": "^2.0.15"
+    "@aws-sdk/client-sqs": "^3.25.0",
+    "@elastic/elasticsearch": "7.17",
+    "@types/cors": "^2.8.12",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "inversify": "^6.0.1",
+    "inversify-express-utils": "^6.4.3",
+    "newrelic": "^8.13.2",
+    "pino": "^7.11.0",
+    "pino-pretty": "^7.6.1",
+    "reflect-metadata": "^0.1.13",
+    "serverless-http": "^2.7.0",
+    "yup": "^0.32.11"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier -w",
+      "eslint --cache --fix --ext .ts",
+      "npm run test"
+    ]
   }
 }
