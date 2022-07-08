@@ -5,4 +5,7 @@ export const makeEnvironment = (container: Container) => {
   container
     .bind(infra.environment.port)
     .toConstantValue(process.env.PORT || 3000)
+  container
+    .bind(infra.environment.databaseUrl)
+    .toConstantValue(process.env.MONGODB_URL || 'http://localhost:27017')
 }

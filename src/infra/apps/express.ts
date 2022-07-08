@@ -1,5 +1,6 @@
 import express, { Application } from 'express'
 import { Container } from 'inversify'
+import { MongoDb } from '@infra/providers/mongodb'
 import { InversifyExpressServer } from 'inversify-express-utils'
 import { Application as BaseApplication } from '@infra/helpers/abstractApplication'
 import { infra } from '@infra/common/ioc'
@@ -29,9 +30,8 @@ export class ExpressApp extends BaseApplication {
 
   async setup () {
     const server = new InversifyExpressServer(this.container)
-
+    this.container.get<MongoDb>(infra.connectors.mongodb).connection
     const logger = this.container.get<Logger>(infra.providers.logger)
-
     server.setConfig((app) => {
       app.use(express.json())
     })

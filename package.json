@@ -64,6 +64,7 @@
     "express": "^4.17.1",
     "inversify": "^6.0.1",
     "inversify-express-utils": "^6.4.3",
+    "mongoose": "^6.4.3",
     "newrelic": "^8.13.2",
     "pino": "^7.11.0",
     "pino-pretty": "^7.6.1",
