@@ -10,9 +10,15 @@ export class MongoDb {
   ) {}
 
   connect () {
-    mongoose.connect(this.databaseUrl)
-    const mongo = mongoose.connection
-    mongo.on('error', console.error.bind(console, 'MongoDB connecton error'))
+    mongoose
+      .connect(this.databaseUrl)
+      .then(() => {
+        console.log("MongoDB is connected")
+      })
+      .catch(err => {
+        console.log(`MongoDB connection error: `, err)
+      })
+
     return mongoose
   }
 
