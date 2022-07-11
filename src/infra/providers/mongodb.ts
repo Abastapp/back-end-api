@@ -9,7 +9,7 @@ export class MongoDb {
     private readonly databaseUrl: string
   ) {}
 
-  connect () {
+  private connect () {
     mongoose
       .connect(this.databaseUrl)
       .then(() => {
