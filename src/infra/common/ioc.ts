@@ -8,5 +8,10 @@ export const infra = {
   environment: {
     port: Symbol.for('Port'),
     databaseUrl: Symbol.for('DatabaseUrl'),
+  },
+  repositories: {
+    user: {
+      store: Symbol.for('CreateUserRepository')
+    }
   }
 }
