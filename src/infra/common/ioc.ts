@@ -11,7 +11,8 @@ export const infra = {
   },
   repositories: {
     user: {
-      store: Symbol.for('CreateUserRepository')
+      store: Symbol.for('CreateUserRepository'),
+      find: Symbol.for('FindUserRespository')
     }
   }
 }
