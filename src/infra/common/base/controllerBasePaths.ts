@@ -1,4 +1,5 @@
 export enum Paths {
   health = '/health',
-  createUser = '/create-user'
+  createUser = '/create-user',
+  findUser = '/show-user'
 }

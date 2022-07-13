@@ -16,4 +16,8 @@ export namespace UserContracts {
   export interface CreateUserService {
     execute(input: Inputs.ToCreate): Promise<UserModel.Base>
   }
+
+  export interface FindUserService {
+    execute(input: Pick<UserModel.Base, 'id'>): Promise<UserModel.Base>
+  }
 }
