@@ -1,4 +1,4 @@
-import { UserModel } from "./models"
+import { UserModel } from './models'
 
 export namespace UserContracts {
   export namespace Inputs {
@@ -15,5 +15,13 @@ export namespace UserContracts {
 
   export interface CreateUserService {
     execute(input: Inputs.ToCreate): Promise<UserModel.Base>
+  }
+
+  export interface FindUserService {
+    execute(input: Pick<UserModel.Base, 'id'>): Promise<UserModel.Base>
+  }
+
+  export interface LoginUserService {
+    login(email: string, password: string): Promise<UserModel.Base>
   }
 }
