@@ -9,12 +9,12 @@ import bcrypt from 'bcrypt'
 
 @injectable()
 export class CreateUserRepository implements CreateUser {
-  constructor(
+  constructor (
     @inject(infra.connectors.mongodb)
     private readonly db: MongoDb
   ) {}
 
-  async store({ name, email, password, birthDate }: UserContracts.Inputs.ToCreate): Promise<UserModel.Base> {
+  async store ({ name, email, password, birthDate }: UserContracts.Inputs.ToCreate): Promise<UserModel.Base> {
     const User = this.db.connection.model<UserModel.Base>('User', userSchema)
     const user = new User({
       name: name,

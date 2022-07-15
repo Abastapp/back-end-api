@@ -25,6 +25,14 @@ export const makeServices = (container: Container) => {
   )
   domainBinder(
     container,
+    domain.services.user.find,
+    FindUserService,
+    [
+      infra.repositories.user.find
+    ]
+  )
+  domainBinder(
+    container,
     domain.services.gasStation.create,
     CreateGasStationService,
     [

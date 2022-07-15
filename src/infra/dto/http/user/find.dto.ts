@@ -2,16 +2,18 @@ import { UserModel } from '@domain/models/user/models'
 import { object, string } from 'yup'
 
 const schema = object({
-  id: string().required()
+  email: string().email().required(),
+  password: string().required()
 })
 
-export class FindUserDto {
+export class LoginUserDto {
   constructor (
-    public id: string
+    public email: string,
+    public password: string
   ) {}
 
-  static from (user: Pick<UserModel.Base, 'id'>): FindUserDto {
-    const { id } = schema.validateSync(user)
-    return new FindUserDto(id)
+  static from (user: Pick<UserModel.Base, 'email' | 'password'>): LoginUserDto {
+    const { email, password } = schema.validateSync(user)
+    return new LoginUserDto(email, password)
   }
 }
