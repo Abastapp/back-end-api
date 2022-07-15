@@ -8,4 +8,7 @@ export const makeEnvironment = (container: Container) => {
   container
     .bind(infra.environment.databaseUrl)
     .toConstantValue(process.env.MONGODB_URL || 'http://localhost:27017')
+  container
+    .bind(infra.environment.secret)
+    .toConstantValue(process.env.SECRET || 'GodJarssin')
 }
