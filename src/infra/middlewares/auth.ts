@@ -1,7 +1,6 @@
 import { UnauthorizedError } from '@domain/errors/unauthorizedError'
 import { BaseMiddleware } from '@infra/common/base/baseMiddleware'
 import { Request, Response, NextFunction } from 'express'
-import { FindUser } from '@domain/repositories/user/find'
 
 export class AuthMiddleware extends BaseMiddleware {
   execute (
@@ -12,16 +11,14 @@ export class AuthMiddleware extends BaseMiddleware {
     const authHeader = req.headers.authorization
 
     if (!authHeader) {
-      const err = new UnauthorizedError('You are not authenticated!', 401)
+      const err = new UnauthorizedError('You are not authenticated!')
       res.setHeader('WWW-Authenticate', 'Basic')
       return next(err)
     }
 
-    const auth = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':')
-    const user = auth[0]
-    const pass = auth[1]
+    const [user, password] = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':')
 
-    if (user === 'admin' && pass === 'password') {
+    if (user === 'admin' && password === 'password') {
       next()
     } else {
       const err = new Error('You are not authenticated!')

@@ -1,9 +1,9 @@
 export const infra = {
   connectors: {
-    mongodb: Symbol.for('MongoDb'),
+    mongodb: Symbol.for('MongoDb')
   },
   providers: {
-    logger: Symbol.for('Logger'),
+    logger: Symbol.for('Logger')
   },
   environment: {
     port: Symbol.for('Port'),
@@ -13,10 +13,14 @@ export const infra = {
   repositories: {
     user: {
       store: Symbol.for('CreateUserRepository'),
-      find: Symbol.for('FindUserRespository')
+      find: Symbol.for('FindUserRespository'),
+      findBy: Symbol.for('FindWhereUserRepository')
     },
     gasStations: {
       store: Symbol.for('CreateGasStationRepository')
+    },
+    token: {
+      store: Symbol.for('CreateTokenRepository')
     }
   }
 }

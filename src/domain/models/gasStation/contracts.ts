@@ -1,4 +1,4 @@
-import { GasStationModel, Location } from "./models"
+import { GasStationModel, Location } from './models'
 
 export namespace GasStationContracts {
   export namespace Inputs {

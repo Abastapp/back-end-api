@@ -1,5 +1,7 @@
 import { UserModel } from './models'
 
+export type SearchFields = 'name' | 'email' | 'birthDate'
+
 export namespace UserContracts {
   export namespace Inputs {
     export interface ToCreate {
@@ -7,6 +9,10 @@ export namespace UserContracts {
       email: string
       birthDate: Date
       password: string
+    }
+
+    export type FindByField = {
+      [key in SearchFields]: string
     }
   }
 
@@ -23,5 +29,9 @@ export namespace UserContracts {
 
   export interface LoginUserService {
     login(email: string, password: string): Promise<UserModel.Base>
+  }
+
+  export interface FindByField {
+    execute(input: Inputs.FindByField): Promise<UserModel.Base>
   }
 }

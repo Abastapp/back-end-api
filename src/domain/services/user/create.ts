@@ -13,16 +13,6 @@ export class CreateUserService implements UserContracts.CreateUserService {
 
   async execute (input: UserContracts.Inputs.ToCreate): Promise<UserModel.Base> {
     const user = await this.createUserRepository.store(input)
-
-    const token = jwt.sign(
-      { user_id: user.id, enail: user.email },
-      process.env.SECRET_KEY as string,
-      {
-        expiresIn: '2h'
-      }
-    )
-
-    user.token = token
     return user
   }
 }

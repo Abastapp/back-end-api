@@ -5,6 +5,7 @@ import { infra } from '@infra/common/ioc'
 import { CreateUserService } from '@domain/services/user/create'
 import { FindUserService } from '@domain/services/user/find'
 import { CreateGasStationService } from '@domain/services/gasStation.ts/create'
+import { LoginUserService } from '@domain/services/user/auth'
 
 export const makeServices = (container: Container) => {
   domainBinder(
@@ -25,18 +26,20 @@ export const makeServices = (container: Container) => {
   )
   domainBinder(
     container,
-    domain.services.user.find,
-    FindUserService,
-    [
-      infra.repositories.user.find
-    ]
-  )
-  domainBinder(
-    container,
     domain.services.gasStation.create,
     CreateGasStationService,
     [
       infra.repositories.gasStations.store
+    ]
+  )
+  domainBinder(
+    container,
+    domain.services.user.login,
+    LoginUserService,
+    [
+      infra.repositories.user.findBy,
+      infra.repositories.token.store,
+      infra.environment.secret
     ]
   )
 }

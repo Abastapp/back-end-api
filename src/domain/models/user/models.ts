@@ -5,6 +5,5 @@ export namespace UserModel {
     email: string
     birthDate: Date
     password?: string
-    token: string
   }
 }

@@ -30,6 +30,7 @@ export class ExpressApp extends BaseApplication {
 
   async setup () {
     const server = new InversifyExpressServer(this.container)
+    // eslint-disable-next-line no-unused-expressions
     this.container.get<MongoDb>(infra.connectors.mongodb).connection
     const logger = this.container.get<Logger>(infra.providers.logger)
     server.setConfig((app) => {

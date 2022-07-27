@@ -12,17 +12,17 @@ import { FindUserDto } from '@infra/dto/http/user/find.dto'
 
 @controller(Paths.findUser)
 export class FindUserController {
-  constructor(
+  constructor (
     @inject(domain.services.user.find)
     private readonly findUserService: UserContracts.FindUserService
   ) {}
-  
+
   @httpGet(
     '/',
     HeadersMiddleware.make(),
     ValidateMiddleware.withHeaders(FindUserDto)
   )
-  async handler(req: BaseRequest<FindUserDto>, res: Response) {
+  async handler (req: BaseRequest<FindUserDto>, res: Response) {
     const user = await this.findUserService.execute({
       id: req.body.id
     })

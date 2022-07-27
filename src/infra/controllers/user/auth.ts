@@ -1,5 +1,5 @@
 import { SuccessResponse } from '@infra/common/http'
-import { controller, httpGet } from 'inversify-express-utils'
+import { controller, httpPost } from 'inversify-express-utils'
 import { Response } from 'express'
 import { Paths } from '@infra/common/base/controllerBasePaths'
 import { BaseRequest } from '@infra/common/base'
@@ -8,17 +8,17 @@ import { HeadersMiddleware } from '@infra/middlewares/headers'
 import { inject } from 'inversify'
 import { domain } from '@domain/common/ioc'
 import { UserContracts } from '@domain/models/user/contracts'
-import { LoginUserDto } from '@infra/dto/http/user/find.dto'
+import { LoginUserDto } from '@infra/dto/http/user/login.dto'
 
-@controller(Paths.findUser)
-export class FindUserController {
+@controller(Paths.login)
+export class AuthController {
   constructor (
-    @inject(domain.services.user.find)
+    @inject(domain.services.user.login)
     private readonly LoginUserService: UserContracts.LoginUserService
   ) {}
 
-  @httpGet(
-    '/login',
+  @httpPost(
+    '/',
     HeadersMiddleware.make(),
     ValidateMiddleware.withHeaders(LoginUserDto)
   )
