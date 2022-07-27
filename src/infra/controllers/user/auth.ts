@@ -8,27 +8,22 @@ import { HeadersMiddleware } from '@infra/middlewares/headers'
 import { inject } from 'inversify'
 import { domain } from '@domain/common/ioc'
 import { UserContracts } from '@domain/models/user/contracts'
-import { CreateUserDto } from '@infra/dto/http/user/create.dto'
+import { LoginUserDto } from '@infra/dto/http/user/login.dto'
 
-@controller(Paths.createUser)
-export class CreateUserController {
+@controller(Paths.login)
+export class AuthController {
   constructor (
-    @inject(domain.services.user.create)
-    private readonly createUserService: UserContracts.CreateUserService
+    @inject(domain.services.user.login)
+    private readonly LoginUserService: UserContracts.LoginUserService
   ) {}
 
   @httpPost(
     '/',
     HeadersMiddleware.make(),
-    ValidateMiddleware.withHeaders(CreateUserDto)
+    ValidateMiddleware.withHeaders(LoginUserDto)
   )
-  async handler (req: BaseRequest<CreateUserDto>, res: Response) {
-    const user = await this.createUserService.execute({
-      name: req.body.name,
-      email: req.body.email,
-      birthDate: req.body.birthDate,
-      password: req.body.password
-    })
+  async handler (req: BaseRequest<LoginUserDto>, res: Response) {
+    const user = await this.LoginUserService.login(req.body.email, req.body.password)
     const response = SuccessResponse.create({ body: user })
     return res.status(response.status).json(response.body)
   }

@@ -5,12 +5,12 @@ import { infra } from '@infra/common/ioc'
 import { inject } from 'inversify'
 
 export class CreateGasStationService implements GasStationContracts.CreateGasStationService {
-  constructor(
+  constructor (
     @inject(infra.repositories.gasStations.store)
     private readonly gasStationCraeteRepostory: CreateGasStation
   ) {}
 
-  async execute(input: GasStationContracts.Inputs.ToCreate): Promise<GasStationModel.Base> {
+  async execute (input: GasStationContracts.Inputs.ToCreate): Promise<GasStationModel.Base> {
     const gasStation = await this.gasStationCraeteRepostory.store(input)
     return gasStation
   }

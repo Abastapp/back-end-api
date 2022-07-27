@@ -7,7 +7,7 @@ export abstract class BaseMiddleware {
     next: NextFunction,
   ): void | Promise<void>;
 
-  constructor() {
+  constructor () {
     this.execute = this.execute.bind(this)
   }
 }

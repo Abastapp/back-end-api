@@ -16,7 +16,7 @@ export class CreateGasStationController {
     @inject(domain.services.gasStation.create)
     private readonly createGasStationService: GasStationContracts.CreateGasStationService
   ) {}
-  
+
   @httpPost(
     '/',
     HeadersMiddleware.make(),
