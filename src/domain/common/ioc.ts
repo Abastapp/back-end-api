@@ -12,6 +12,9 @@ export const domain = {
     },
     token: {
       create: Symbol.for('CreateGasStationService')
+    },
+    authetication: {
+      execute: Symbol.for('AuthenticationService')
     }
   }
 }

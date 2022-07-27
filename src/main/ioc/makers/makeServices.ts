@@ -4,8 +4,9 @@ import { domainBinder } from '@infra/helpers/domainBinder'
 import { infra } from '@infra/common/ioc'
 import { CreateUserService } from '@domain/services/user/create'
 import { FindUserService } from '@domain/services/user/find'
-import { CreateGasStationService } from '@domain/services/gasStation.ts/create'
-import { LoginUserService } from '@domain/services/user/auth'
+import { CreateGasStationService } from '@domain/services/gasStation/create'
+import { LoginUserService } from '@domain/services/user/login'
+import { AuthenticationService } from '@domain/services/authentication/authentication'
 
 export const makeServices = (container: Container) => {
   domainBinder(
@@ -39,6 +40,15 @@ export const makeServices = (container: Container) => {
     [
       infra.repositories.user.findBy,
       infra.repositories.token.store,
+      infra.environment.secret
+    ]
+  )
+  domainBinder(
+    container,
+    domain.services.authetication.execute,
+    AuthenticationService,
+    [
+      infra.repositories.user.findBy,
       infra.environment.secret
     ]
   )

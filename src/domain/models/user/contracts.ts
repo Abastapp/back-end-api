@@ -14,6 +14,10 @@ export namespace UserContracts {
     export type FindByField = {
       [key in SearchFields]: string
     }
+
+    export interface IAuthentication {
+      token: string
+    }
   }
 
   export namespace Outputs {
@@ -33,5 +37,8 @@ export namespace UserContracts {
 
   export interface FindByField {
     execute(input: Inputs.FindByField): Promise<UserModel.Base>
+  }
+  export interface AuthenticationService {
+    execute(input: Inputs.IAuthentication): Promise<void>
   }
 }
