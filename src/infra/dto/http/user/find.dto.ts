@@ -3,17 +3,17 @@ import { object, string } from 'yup'
 
 const schema = object({
   id: string().required(),
-  token: string().required()
+  authorization: string().required()
 })
 
 export class FindUserDto {
   constructor (
     public id: string,
-    public token: string
+    public authorization: string
   ) {}
 
   static from (user: Pick<UserModel.Base, 'id'>): FindUserDto {
-    const { id, token } = schema.validateSync(user)
-    return new FindUserDto(id, token)
+    const { id, authorization } = schema.validateSync(user)
+    return new FindUserDto(id, authorization)
   }
 }

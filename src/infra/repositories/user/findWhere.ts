@@ -4,7 +4,6 @@ import { MongoDb } from '@infra/providers/mongodb'
 import { inject, injectable } from 'inversify'
 import { userSchema } from '@infra/helpers/mongodb/schema/user'
 import { FindByField, Keys } from '@domain/repositories/user/findByField'
-import { SearchFields } from '@domain/models/user/contracts'
 
 @injectable()
 export class FindWhereUserRepository implements FindByField {

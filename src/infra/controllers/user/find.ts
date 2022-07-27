@@ -14,8 +14,8 @@ import { FindUserDto } from '@infra/dto/http/user/find.dto'
 export class FindUserController {
   constructor (
     @inject(domain.services.user.find)
-    @inject(domain.services.authetication.execute)
     private readonly findUserService: UserContracts.FindUserService,
+    @inject(domain.services.authetication.execute)
     private readonly authencationService: UserContracts.AuthenticationService
   ) {}
 
@@ -25,7 +25,7 @@ export class FindUserController {
     ValidateMiddleware.withHeaders(FindUserDto)
   )
   async handler (req: BaseRequest<FindUserDto>, res: Response) {
-    await this.authencationService.execute({ token: req.body.token })
+    await this.authencationService.execute({ authorization: req.body.authorization })
     const user = await this.findUserService.execute({
       id: req.body.id
     })

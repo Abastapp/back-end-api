@@ -16,7 +16,7 @@ export namespace UserContracts {
     }
 
     export interface IAuthentication {
-      token: string
+      authorization: string
     }
   }
 
